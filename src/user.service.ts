@@ -2,7 +2,7 @@ import { Injectable, Inject, Logger } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from './models/user.entity';
 
-const logger = new Logger("UserService");
+const logger = new Logger('UserService');
 
 @Injectable()
 export class UserService {
@@ -11,8 +11,8 @@ export class UserService {
     private userRepository: Repository<User>,
   ) {}
 
-    async create(user: User): Promise<string> {
-      const userRepo = await this.userRepository.save(user);
-      return userRepo.id.toString();
-    }
+  async create(user: User): Promise<string> {
+    const userRepo = await this.userRepository.save(user);
+    return userRepo.id.toString();
+  }
 }
