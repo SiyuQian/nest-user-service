@@ -1,26 +1,46 @@
-import {Entity, ObjectID, ObjectIdColumn, Column, CreateDateColumn, UpdateDateColumn} from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
-@Entity({name: "users"})
+enum Gender {
+  Male,
+  Female,
+  Other,
+}
+
+enum Role {
+  Admin,
+  User,
+  Merchant,
+}
+
+@Entity({ name: 'users' })
 export class User {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @ObjectIdColumn()
-    id: ObjectID;
+  @Column({ unique: true })
+  email: string;
 
-    @Column()
-    firstName: string;
+  @Column()
+  password: string;
 
-    @Column()
-    lastName: string;
+  @Column({ default: true })
+  isActive: boolean;
 
-    @Column({ unique: true })
-    email: string;
+  // @Column()
+  // gender: Gender;
 
-    @Column()
-    password: string;
+  // @Column()
+  // role: Role;
 
-    @CreateDateColumn({ type: 'timestamp' })
-    createdAt: Date
+  @CreateDateColumn({ type: 'timestamp' })
+  createdAt: Date;
 
-    @UpdateDateColumn({ type: 'timestamp', nullable: true })
-    updatedAt?: Date
+  @UpdateDateColumn({ type: 'timestamp', nullable: true })
+  updatedAt?: Date;
 }
